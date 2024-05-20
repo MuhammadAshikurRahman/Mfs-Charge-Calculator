@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- Developer Is Ashikur Rahman -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFS Charge Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .header-container, .nav-container {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 650px;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            border-radius: 0 0 8px 8px;
+        }
+        nav button {
+            background-color: #333;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        nav button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        h3 {
+            color: #f70911;
+        }
+        .container {
+            padding: 20px;
+            margin: 20px auto;
+            background-color: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .result {
+            font-weight: bold;
+            color: #f70911;
+        }
+        #sendmoney-section {
+            margin-top: 60px;
+        }
+        footer {
+            background-color: #333;
+            color: rgb(13, 244, 5);
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 8px;
+            margin-top: 20px;
+            width: 90%;
+            margin: auto;
+            max-width: 650px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-container">
+    <header>BD MFS CHARGE CALCULATOR</header>
+</div>
+
+<div class="nav-container">
+    <nav>
+        <button onclick="selectMFS('bkash')">BKASH</button>
+        <button onclick="selectMFS('nagad')">NAGAD</button>
+        <button onclick="selectMFS('roket')">ROKET</button>
+        <button onclick="selectMFS('upay')">UPAY</button>
+    </nav>
+</div>
+
+<div class="container">
+    <div id="cashout-section" class="section">
+        <h3>Cashout Charge Calculator</h3>
+        <label for="cashout-charge">Present Cashout Charge per Thousand (Tk)</label>
+        <input type="number" id="cashout-charge" placeholder="Enter cashout charge per thousand">
+        <label for="cashout-amount">Amount (Tk)</label>
+        <input type="number" id="cashout-amount" placeholder="Enter amount">
+        <button onclick="calculateCashout()">Calculate Cashout Charge</button>
+        <p id="cashout-result" class="result"></p>
+    </div>
+    <div id="sendmoney-section" class="section">
+        <h3>Send Money Charge Calculator</h3>
+        <label for="sendmoney-charge">Present Send Money Charge per Thousand (Tk)</label>
+        <input type="number" id="sendmoney-charge" placeholder="Enter send money charge per thousand">
+        <label for="sendmoney-amount">Amount (Tk)</label>
+        <input type="number" id="sendmoney-amount" placeholder="Enter amount">
+        <button onclick="calculateSendMoney()">Calculate Send Money Charge</button>
+        <p id="sendmoney-result" class="result"></p>
+    </div>
+</div>
+
+<div class="footer-container">
+    <footer>Ashikur Rahman</footer>
+</div>
+
+<script>
+    function selectMFS(company) {
+        // Display the company name in the header (optional)
+        document.querySelector('header').innerText = company.toUpperCase() + " MFS CHARGE CALCULATOR";
+        // Clear previous results
+        document.getElementById('cashout-result').innerText = '';
+        document.getElementById('sendmoney-result').innerText = '';
+    }
+
+    function calculateCashout() {
+        const chargePerThousand = document.getElementById('cashout-charge').value;
+        const amount = document.getElementById('cashout-amount').value;
+        if (chargePerThousand && amount) {
+            const totalCharge = (chargePerThousand / 1000) * amount;
+            document.getElementById('cashout-result').innerText = "Cashout Charge: " + totalCharge.toFixed(2) + " Tk";
+        } else {
+            document.getElementById('cashout-result').innerText = "Please enter both charge and amount.";
+        }
+    }
+
+    function calculateSendMoney() {
+        const chargePerThousand = document.getElementById('sendmoney-charge').value;
+        const amount = document.getElementById('sendmoney-amount').value;
+        if (chargePerThousand && amount) {
+            const totalCharge = (chargePerThousand / 1000) * amount;
+            document.getElementById('sendmoney-result').innerText = "Send Money Charge: " + totalCharge.toFixed(2) + " Tk";
+        } else {
+            document.getElementById('sendmoney-result').innerText = "Please enter both charge and amount.";
+        }
+    }
+</script>
+
+</body>
+</html>
